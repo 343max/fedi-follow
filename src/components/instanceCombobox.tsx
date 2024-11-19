@@ -46,9 +46,9 @@ export const ComboboxDemo: React.FC<{
 					<ChevronsUpDown className="opacity-50" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-[200px] p-0">
+			<PopoverContent className="w-[200px] p-0 bg-primary">
 				<Command>
-					<CommandInput placeholder="Search framework..." />
+					<CommandInput placeholder="Search instances..." />
 					<CommandList>
 						<CommandEmpty>No framework found.</CommandEmpty>
 						<CommandGroup>
