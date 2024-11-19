@@ -16,7 +16,7 @@ import { apps } from "@/lib/instance";
 import { mastodonInstances } from "@/lib/mastodonInstances";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
-export const ProfileConverter = () => {
+export const ProfileBridger = () => {
 	const [instance, setInstance] = React.useState("");
 	const instanceList = React.useMemo(
 		() =>
