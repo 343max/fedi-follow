@@ -88,7 +88,7 @@ export const ProfileConverter = () => {
 					</div>
 				</form>
 			</CardContent>
-			<CardFooter className="flex justify-between">
+			<CardFooter className="flex justify-end">
 				<Button>Visit Profile</Button>
 			</CardFooter>
 		</Card>
