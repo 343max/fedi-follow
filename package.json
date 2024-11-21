@@ -30,7 +30,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "parcel src/index.html",
+		"start": "parcel serve src/index.html",
 		"build": "parcel build src/index.html"
 	},
 	"eslintConfig": {
@@ -45,11 +45,13 @@
 		]
 	},
 	"devDependencies": {
-		"@craco/craco": "^7.1.0",
 		"autoprefixer": "^10.4.20",
 		"parcel": "^2.13.0",
 		"postcss": "^8.4.49",
 		"process": "^0.11.10",
 		"tailwindcss": "^3.4.15"
+	},
+	"alias": {
+		"app": "./src"
 	}
 }

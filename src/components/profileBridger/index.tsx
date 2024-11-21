@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "app/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -8,16 +8,25 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { apps } from "@/lib/instance";
-import { mastodonInstances } from "@/lib/mastodonInstances";
+} from "app/components/ui/card";
+import { Input } from "app/components/ui/input";
+import { Label } from "app/components/ui/label";
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "app/components/ui/tabs";
+import { apps } from "app/lib/instance";
+import { mastodonInstances } from "app/lib/mastodonInstances";
+import { AnEmjoi } from "../anEmjoi";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 export const ProfileBridger = () => {
 	const [instance, setInstance] = React.useState("");
+	const [step, setStep] = React.useState<"profileLink" | "pickInstance">(
+		"profileLink",
+	);
 	const instanceList = React.useMemo(
 		() =>
 			mastodonInstances
@@ -28,7 +37,9 @@ export const ProfileBridger = () => {
 	return (
 		<Card className="w-[500px]">
 			<CardHeader>
-				<CardTitle>Follow on Mastodon</CardTitle>
+				<CardTitle>
+					<AnEmjoi /> Follow on Mastodon
+				</CardTitle>
 				<CardDescription>
 					Paste the Bluesky Profile link or the Threads profile you want to
 					follow
@@ -38,7 +49,7 @@ export const ProfileBridger = () => {
 				<form>
 					<div className="grid w-full items-center gap-4">
 						<div className="flex flex-col space-y-1.5">
-							<Label htmlFor="name">Profile</Label>
+							<Label htmlFor="name">Profile Link</Label>
 							<Input
 								id="name"
 								placeholder="https://bsky.app/profile/343max.de"
