@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { ProfileBridger } from "app/components/profileBridger";
 import { Emoji } from "./emoji";

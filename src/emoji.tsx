@@ -1,2 +1,1 @@
-export const Emoji = () => 
-   (<h1>🍎</h1>)
+export const Emoji = () => (<h1>🌟</h1>)
