@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { ProfileBridger } from "@/components/profileConverter";
+import { ProfileBridger } from "@/components/profileBridger";
 
 function App() {
 	return (
