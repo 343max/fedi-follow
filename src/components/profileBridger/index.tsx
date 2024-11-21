@@ -9,7 +9,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "app/components/ui/card";
-import { AnEmjoi } from "../anEmjoi";
 import { ClientPicker } from "./clientPicker";
 import { ProfileLinkInput } from "./profileLinkInput";
 
@@ -17,9 +16,7 @@ export const ProfileBridger = () => {
 	return (
 		<Card className="w-[500px]">
 			<CardHeader>
-				<CardTitle>
-					<AnEmjoi /> Follow on Mastodon
-				</CardTitle>
+				<CardTitle>Follow on Mastodon</CardTitle>
 				<CardDescription>
 					Paste the Bluesky Profile link or the Threads profile you want to
 					follow
