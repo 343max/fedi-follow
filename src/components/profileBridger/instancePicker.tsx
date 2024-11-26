@@ -1,4 +1,4 @@
-import { mastodonInstances } from "app/lib/mastodonInstances";
+import { mastodonInstances } from "@app/lib/mastodonInstances";
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";

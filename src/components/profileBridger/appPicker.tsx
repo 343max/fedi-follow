@@ -1,4 +1,4 @@
-import { apps } from "app/lib/instance";
+import { apps } from "@app/lib/instance";
 import { Card } from "../ui/card";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
