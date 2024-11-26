@@ -1,5 +1,5 @@
-import { Input } from "app/components/ui/input";
-import { Label } from "app/components/ui/label";
+import { Input } from "@app/components/ui/input";
+import { Label } from "@app/components/ui/label";
 import React from "react";
 import { Button } from "../ui/button";
 

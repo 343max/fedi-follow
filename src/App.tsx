@@ -1,5 +1,5 @@
 import "./App.css";
-import { ProfileBridger } from "app/components/profileBridger";
+import { ProfileBridger } from "@app/components/profileBridger";
 
 function App() {
 	return (
