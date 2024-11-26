@@ -6,7 +6,8 @@
 		"build": "tsc -b && vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"format": "biome check --write ./src"
+		"format": "biome check --write ./src",
+		"test:watch": "bun test --watch"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

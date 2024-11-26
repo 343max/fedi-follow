@@ -1,37 +1,32 @@
 import { Input } from "@app/components/ui/input";
-import { Label } from "@app/components/ui/label";
-import type { MastodonHandle } from "@app/lib/convertUrl";
-import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+import type { UseFormReturn } from "react-hook-form";
+import {
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "../ui/form";
 
-export const ProfileLinkInput: React.FC<{ initialUrl: string | undefined }> = ({
-	initialUrl,
-}) => {
-	const [url, setUrl] = useState("");
-	const [mastodonHandle, setMastodonHandle] = useState<MastodonHandle | null>(
-		null,
-	);
-
-	const checkUrl = () => {};
-
-	useEffect(() => {
-		if (initialUrl !== undefined) {
-			setUrl(initialUrl);
-		}
-	}, [initialUrl]);
-
+export const ProfileLinkInput: React.FC<{
+	form: UseFormReturn<{ url: string }>;
+}> = ({ form }) => {
 	return (
-		<div className="flex flex-col space-y-1.5 gap-2">
-			<Label htmlFor="name">Profile Link</Label>
-			<Input
-				id="name"
-				value={url}
-				onChange={(e) => setUrl(e.target.value)}
-				placeholder="https://bsky.app/profile/343max.de"
-			/>
-			<div className="flex justify-end">
-				<Button>Check URL</Button>
-			</div>
-		</div>
+		<FormField
+			control={form.control}
+			name="url"
+			render={({ field }) => (
+				<FormItem>
+					<FormLabel>Profile Link</FormLabel>
+					<FormControl>
+						<Input
+							placeholder="https://bsky.app/profile/343max.de"
+							{...field}
+						/>
+					</FormControl>
+					<FormMessage />
+				</FormItem>
+			)}
+		/>
 	);
 };
