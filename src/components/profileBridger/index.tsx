@@ -9,10 +9,12 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@app/components/ui/card";
+import { useFragmentParams } from "@app/hooks/useFragmentParams";
 import { ClientPicker } from "./clientPicker";
 import { ProfileLinkInput } from "./profileLinkInput";
 
 export const ProfileBridger = () => {
+	const initialUrl = useFragmentParams().url;
 	return (
 		<Card className="w-[500px]">
 			<CardHeader>
@@ -24,7 +26,7 @@ export const ProfileBridger = () => {
 			</CardHeader>
 			<CardContent>
 				<div className="grid w-full items-center gap-4">
-					<ProfileLinkInput />
+					<ProfileLinkInput initialUrl={initialUrl} />
 					<ClientPicker />
 				</div>
 			</CardContent>
