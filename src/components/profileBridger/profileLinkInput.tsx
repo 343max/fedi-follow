@@ -1,5 +1,6 @@
 import { Input } from "@app/components/ui/input";
 import { Label } from "@app/components/ui/label";
+import type { MastodonHandle } from "@app/lib/convertUrl";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
@@ -7,9 +8,16 @@ export const ProfileLinkInput: React.FC<{ initialUrl: string | undefined }> = ({
 	initialUrl,
 }) => {
 	const [url, setUrl] = useState("");
+	const [mastodonHandle, setMastodonHandle] = useState<MastodonHandle | null>(
+		null,
+	);
+
+	const checkUrl = () => {};
 
 	useEffect(() => {
-		if (initialUrl !== undefined) setUrl(initialUrl);
+		if (initialUrl !== undefined) {
+			setUrl(initialUrl);
+		}
 	}, [initialUrl]);
 
 	return (
