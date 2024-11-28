@@ -60,7 +60,7 @@ export const ProfileBridger = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={onSubmit}>
-				<Card className="w-[500px]">
+				<Card className="max-w-[500px]">
 					<CardHeader>
 						<CardTitle>Follow on Mastodon</CardTitle>
 						<CardDescription>
