@@ -7,10 +7,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../ui/form";
-import type { FormModel } from "./form";
+import type { FormSchema } from "./form";
 
 export const ProfileLinkInput: React.FC<{
-	form: UseFormReturn<FormModel>;
+	form: UseFormReturn<FormSchema>;
 }> = ({ form }) => {
 	return (
 		<FormField
