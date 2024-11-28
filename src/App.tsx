@@ -24,19 +24,23 @@ function App() {
 				<CardContent>
 					<ProfileBridger />
 				</CardContent>
-				<CardFooter className="flex justify-end gap-4">
-					<a
-						href="https://www.icloud.com/shortcuts/3aefc3ab30ce48679a54846748be8c01"
-						className="w-6 fill-zinc-800 dark:fill-zinc-100"
-					>
-						<ShortcutsIcon />
-					</a>
-					<a
-						href="https://github.com/343max/fedi-follow/"
-						className="w-6 fill-zinc-800 dark:fill-zinc-100"
-					>
-						<GithubIcon />
-					</a>
+				<CardFooter className="flex-col gap-3">
+					<div className="flex w-full justify-start">
+						<a
+							href="https://www.icloud.com/shortcuts/3aefc3ab30ce48679a54846748be8c01"
+							className=" fill-zinc-800 dark:fill-zinc-100 flex items-center"
+						>
+							<ShortcutsIcon /> Apple Shortcuts share sheet action
+						</a>
+					</div>
+					<div className="flex w-full justify-end">
+						<a
+							href="https://github.com/343max/fedi-follow/"
+							className="w-6 fill-zinc-800 dark:fill-zinc-100"
+						>
+							<GithubIcon />
+						</a>
+					</div>
 				</CardFooter>
 			</Card>
 		</div>
