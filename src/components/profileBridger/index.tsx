@@ -11,7 +11,7 @@ import {
 } from "@app/components/ui/card";
 import { useFragmentParams } from "@app/hooks/useFragmentParams";
 import { extractMastodonHandle } from "@app/lib/convertUrl";
-import { appIdentifiers } from "@app/lib/instance";
+import { mastodonAppIdentifiers } from "@app/lib/mastodonApps";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
