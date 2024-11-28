@@ -11,24 +11,19 @@ import {
 } from "@app/components/ui/card";
 import { useFragmentParams } from "@app/hooks/useFragmentParams";
 import { extractMastodonHandle } from "@app/lib/convertUrl";
+import { appIdentifiers } from "@app/lib/instance";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Form } from "../ui/form";
-import { ClientPicker } from "./clientPicker";
+import { type FormModel, FormSchema } from "./form";
+import { HandlerPicker } from "./handlerPicker";
 import { ProfileLinkInput } from "./profileLinkInput";
-
-const FormSchema = z.object({
-	url: z.string().refine((s) => extractMastodonHandle(s) !== null, {
-		message: "Not a Bluesky or Threads profile URL",
-	}),
-});
 
 export const ProfileBridger = () => {
 	const initialUrl = useFragmentParams().url;
 
-	const form = useForm<z.infer<typeof FormSchema>>({
+	const form = useForm<FormModel>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: { url: initialUrl ?? "" },
 	});
@@ -57,7 +52,7 @@ export const ProfileBridger = () => {
 					<CardContent>
 						<div className="grid w-full items-center gap-4">
 							<ProfileLinkInput form={form} />
-							<ClientPicker />
+							<HandlerPicker />
 						</div>
 					</CardContent>
 					<CardFooter className="flex justify-end">

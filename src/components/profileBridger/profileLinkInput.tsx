@@ -7,9 +7,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../ui/form";
+import type { FormModel } from "./form";
 
 export const ProfileLinkInput: React.FC<{
-	form: UseFormReturn<{ url: string }>;
+	form: UseFormReturn<FormModel>;
 }> = ({ form }) => {
 	return (
 		<FormField
