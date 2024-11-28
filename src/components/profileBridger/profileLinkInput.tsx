@@ -25,6 +25,7 @@ export const ProfileLinkInput: React.FC<{
 						<FormControl>
 							<Input
 								placeholder="https://bsky.app/profile/343max.de"
+								type="url"
 								{...field}
 							/>
 						</FormControl>

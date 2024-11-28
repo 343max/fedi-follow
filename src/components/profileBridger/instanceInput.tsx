@@ -33,6 +33,7 @@ export const InstanceInput: React.FC<{
 				placeholder="mastodon.social"
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
+				type="url"
 			/>
 			<datalist id="instance-list">
 				{instanceList.map((instance) => (
