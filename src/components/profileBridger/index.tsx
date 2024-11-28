@@ -46,8 +46,14 @@ export const ProfileBridger = () => {
 			window.location.href = `https://${handler.instance}/@${handle.user}@${handle.instance}`;
 		} else {
 			const app = mastodonApps.find((app) => app.id === handler.app);
-			// biome-ignore lint/style/noNonNullAssertion: <explanation>
-			window.location.href = app!.getUrl(handle);
+			if (app) {
+				window.location.href = app.getUrl(handle);
+			} else {
+				form.setValue("handler", {
+					kind: "webbrowser",
+					instance: "",
+				});
+			}
 		}
 	});
 
