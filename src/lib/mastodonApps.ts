@@ -11,6 +11,11 @@ export const mastodonApps: readonly {
 		getUrl: ({ user, instance }) => `mastodon://profile/@${user}@${instance}`,
 	},
 	{
+		id: "elk",
+		name: "Elk",
+		getUrl: ({ user, instance }) => `https://elk.zone/@${user}@${instance}`,
+	},
+	{
 		id: "mona",
 		name: "Mona",
 		getUrl: ({ user, instance }) =>
