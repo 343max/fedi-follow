@@ -38,8 +38,9 @@ export const ProfileBridger = () => {
 	useEffect(() => {
 		if (initialUrl) {
 			form.setValue("url", initialUrl);
+			form.trigger("url");
 		}
-	}, [initialUrl, form.setValue]);
+	}, [initialUrl, form]);
 
 	const onSubmit = form.handleSubmit((data) => {
 		handlerSettings.saveValue(data.handler);
@@ -55,7 +56,9 @@ export const ProfileBridger = () => {
 		} else {
 			const app = mastodonApps.find((app) => app.id === handler.app);
 			if (app) {
-				window.location.href = app.getUrl(handle);
+				const url = app.getUrl(handle);
+				console.log(url);
+				window.location.href = url;
 			} else {
 				form.setValue("handler", {
 					kind: "webbrowser",
@@ -72,7 +75,7 @@ export const ProfileBridger = () => {
 					<ProfileLinkInput form={form} />
 					<HandlerPicker form={form} />
 				</div>
-				<Button>Visit Profile</Button>
+				<Button disabled={!form.formState.isValid}>Visit Profile</Button>
 			</form>
 		</Form>
 	);
