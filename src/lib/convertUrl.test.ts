@@ -4,12 +4,12 @@ import { extractMastodonHandle } from "./convertUrl";
 describe("extractMastodonHandle", () => {
 	test("bluesky profile url", () => {
 		const handle = extractMastodonHandle("https://bsky.app/profile/343max.de");
-		expect(handle).toEqual({ host: "bsky.brid.gy", handle: "343max.de" });
+		expect(handle).toEqual({ instance: "bsky.brid.gy", user: "343max.de" });
 	});
 
 	test("threads profile url", () => {
 		const handle = extractMastodonHandle("https://www.threads.net/@anildash");
-		expect(handle).toEqual({ host: "threads.net", handle: "anildash" });
+		expect(handle).toEqual({ instance: "threads.net", user: "anildash" });
 	});
 
 	test("random url", () => {

@@ -1,4 +1,3 @@
-
 import { Button } from "@app/components/ui/button";
 import {
 	Card,
@@ -9,6 +8,8 @@ import {
 	CardTitle,
 } from "@app/components/ui/card";
 import { useFragmentParams } from "@app/hooks/useFragmentParams";
+import { extractMastodonHandle } from "@app/lib/convertUrl";
+import { mastodonApps } from "@app/lib/mastodonApps";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -35,7 +36,19 @@ export const ProfileBridger = () => {
 	}, [initialUrl, form.setValue]);
 
 	const onSubmit = form.handleSubmit((data) => {
-		console.log(data);
+		const handle = extractMastodonHandle(data.url);
+		if (!handle) {
+			throw new Error("How did we get here?");
+		}
+
+		const handler = data.handler;
+		if (handler.kind === "webbrowser") {
+			window.location.href = `https://${handler.instance}/@${handle.user}@${handle.instance}`;
+		} else {
+			const app = mastodonApps.find((app) => app.id === handler.app);
+			// biome-ignore lint/style/noNonNullAssertion: <explanation>
+			window.location.href = app!.getUrl(handle);
+		}
 	});
 
 	return (

@@ -2,6 +2,7 @@ import { mastodonInstances } from "@app/lib/mastodonInstances";
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 export const InstanceInput: React.FC<{
 	initialValue: string;
@@ -23,6 +24,9 @@ export const InstanceInput: React.FC<{
 
 	return (
 		<>
+			<Label>
+				Important! This only work if you are logged in ob that instance
+			</Label>
 			<Input
 				id="instance"
 				list="instance-list"

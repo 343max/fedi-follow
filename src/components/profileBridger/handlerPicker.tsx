@@ -2,6 +2,7 @@ import {
 	type MastodonAppIdentifier,
 	mastodonApps,
 } from "@app/lib/mastodonApps";
+import { useEffect, useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
 import {
 	Select,
@@ -16,7 +17,12 @@ import { InstanceInput } from "./instanceInput";
 export const HandlerPicker: React.FC<{
 	form: UseFormReturn<FormSchema>;
 }> = ({ form }) => {
-	const handler = form.getValues().handler;
+	const [handler, setHandler] = useState(form.getValues().handler);
+
+	useEffect(() => {
+		form.setValue("handler", handler);
+	}, [handler, form.setValue]);
+
 	const showInstanceInput = handler.kind === "webbrowser";
 
 	return (
@@ -26,8 +32,7 @@ export const HandlerPicker: React.FC<{
 				value={handler.kind === "webbrowser" ? "webbrowser" : handler.app}
 				required={true}
 				onValueChange={(app) => {
-					form.setValue(
-						"handler",
+					setHandler(
 						app === "webbrowser"
 							? { kind: "webbrowser", instance: "" }
 							: {
