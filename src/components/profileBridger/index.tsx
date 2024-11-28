@@ -13,6 +13,7 @@ import { type HandlerSchema, handlerSchema } from "@app/lib/handlerSchema";
 import { mastodonApps } from "@app/lib/mastodonApps";
 import { useLocalStorage } from "@app/lib/useLocalStorage";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ChevronsRight } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
@@ -75,7 +76,12 @@ export const ProfileBridger = () => {
 					<ProfileLinkInput form={form} />
 					<HandlerPicker form={form} />
 				</div>
-				<Button disabled={!form.formState.isValid}>Visit Profile</Button>
+				<div className="flex justify-end w-full pt-3">
+					<Button disabled={!form.formState.isValid}>
+						Visit Profile
+						<ChevronsRight />
+					</Button>
+				</div>
 			</form>
 		</Form>
 	);
