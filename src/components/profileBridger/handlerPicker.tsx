@@ -1,6 +1,7 @@
 import { mastodonApps } from "@app/lib/mastodonApps";
 import { useEffect, useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
+import { Label } from "../ui/label";
 import {
 	Select,
 	SelectContent,
@@ -24,7 +25,7 @@ export const HandlerPicker: React.FC<{
 
 	return (
 		<>
-			<h2>Open Profile in...</h2>
+			<Label>Open Profile in...</Label>
 			<Select
 				value={handler.kind === "webbrowser" ? "webbrowser" : handler.app}
 				required={true}
