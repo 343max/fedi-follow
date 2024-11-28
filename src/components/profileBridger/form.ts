@@ -1,12 +1,11 @@
 import { extractMastodonHandle } from "@app/lib/convertUrl";
-import { mastodonAppIdentifiers } from "@app/lib/mastodonApps";
 import { z } from "zod";
 
 const handlerSchema = z.discriminatedUnion("kind", [
 	z.object({ kind: z.literal("webbrowser"), instance: z.string() }),
 	z.object({
 		kind: z.literal("app"),
-		app: z.enum(mastodonAppIdentifiers),
+		app: z.string(),
 	}),
 ]);
 

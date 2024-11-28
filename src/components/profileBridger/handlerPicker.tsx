@@ -1,7 +1,4 @@
-import {
-	type MastodonAppIdentifier,
-	mastodonApps,
-} from "@app/lib/mastodonApps";
+import { mastodonApps } from "@app/lib/mastodonApps";
 import { useEffect, useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
 import {
@@ -37,7 +34,7 @@ export const HandlerPicker: React.FC<{
 							? { kind: "webbrowser", instance: "" }
 							: {
 									kind: "app",
-									app: app as MastodonAppIdentifier,
+									app: app,
 								},
 					);
 				}}
