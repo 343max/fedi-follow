@@ -1,8 +1,9 @@
 import { mastodonInstances } from "@app/lib/mastodonInstances";
+import { TriangleAlert } from "lucide-react";
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
+import { CardDescription } from "../ui/card";
 import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 
 export const InstanceInput: React.FC<{
 	initialValue: string;
@@ -24,9 +25,6 @@ export const InstanceInput: React.FC<{
 
 	return (
 		<>
-			<Label>
-				Important! This only work if you are logged in ob that instance
-			</Label>
 			<Input
 				id="instance"
 				list="instance-list"
@@ -40,6 +38,10 @@ export const InstanceInput: React.FC<{
 					<option key={instance} value={instance} />
 				))}
 			</datalist>
+			<CardDescription className="flex items-center gap-1 -80">
+				<TriangleAlert />
+				Make sure you are logged in!
+			</CardDescription>
 		</>
 	);
 };
