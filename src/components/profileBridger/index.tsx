@@ -1,4 +1,3 @@
-import * as React from "react";
 
 import { Button } from "@app/components/ui/button";
 import {
@@ -10,8 +9,6 @@ import {
 	CardTitle,
 } from "@app/components/ui/card";
 import { useFragmentParams } from "@app/hooks/useFragmentParams";
-import { extractMastodonHandle } from "@app/lib/convertUrl";
-import { mastodonAppIdentifiers } from "@app/lib/mastodonApps";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
