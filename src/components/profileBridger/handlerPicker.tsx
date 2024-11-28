@@ -2,28 +2,21 @@ import {
 	type MastodonAppIdentifier,
 	mastodonApps,
 } from "@app/lib/mastodonApps";
-import { useState } from "react";
+import type { UseFormReturn } from "react-hook-form";
 import {
 	Select,
 	SelectContent,
-	SelectGroup,
 	SelectItem,
-	SelectLabel,
 	SelectTrigger,
 	SelectValue,
 } from "../ui/select";
+import type { FormSchema } from "./form";
 import { InstanceInput } from "./instanceInput";
 
-type HandlerInput =
-	| { kind: "webbrowser"; instance: string }
-	| { kind: "app"; app: MastodonAppIdentifier };
-
-export const HandlerPicker = () => {
-	const [handler, setHandler] = useState<HandlerInput>({
-		kind: "webbrowser",
-		instance: "",
-	});
-
+export const HandlerPicker: React.FC<{
+	form: UseFormReturn<FormSchema>;
+}> = ({ form }) => {
+	const handler = form.getValues().handler;
 	const showInstanceInput = handler.kind === "webbrowser";
 
 	return (
@@ -33,11 +26,15 @@ export const HandlerPicker = () => {
 				value={handler.kind === "webbrowser" ? "webbrowser" : handler.app}
 				required={true}
 				onValueChange={(app) => {
-					if (app === "webbrowser") {
-						setHandler({ kind: "webbrowser", instance: "" });
-					} else {
-						setHandler({ kind: "app", app: app as MastodonAppIdentifier });
-					}
+					form.setValue(
+						"handler",
+						app === "webbrowser"
+							? { kind: "webbrowser", instance: "" }
+							: {
+									kind: "app",
+									app: app as MastodonAppIdentifier,
+								},
+					);
 				}}
 			>
 				<SelectTrigger>
@@ -52,7 +49,14 @@ export const HandlerPicker = () => {
 					))}
 				</SelectContent>
 			</Select>
-			{showInstanceInput && <InstanceInput />}
+			{showInstanceInput && (
+				<InstanceInput
+					initialValue=""
+					setValue={(v) =>
+						form.setValue("handler", { kind: "webbrowser", instance: v })
+					}
+				/>
+			)}
 		</>
 	);
 };

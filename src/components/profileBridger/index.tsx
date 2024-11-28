@@ -16,16 +16,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
-import { type FormModel, FormSchema } from "./form";
+import { type FormSchema, formSchema } from "./form";
 import { HandlerPicker } from "./handlerPicker";
 import { ProfileLinkInput } from "./profileLinkInput";
 
 export const ProfileBridger = () => {
 	const initialUrl = useFragmentParams().url;
 
-	const form = useForm<FormModel>({
-		resolver: zodResolver(FormSchema),
-		defaultValues: { url: initialUrl ?? "" },
+	const form = useForm<FormSchema>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			url: initialUrl ?? "",
+			handler: { kind: "webbrowser", instance: "" },
+		},
 	});
 
 	useEffect(() => {
@@ -52,7 +55,7 @@ export const ProfileBridger = () => {
 					<CardContent>
 						<div className="grid w-full items-center gap-4">
 							<ProfileLinkInput form={form} />
-							<HandlerPicker />
+							<HandlerPicker form={form} />
 						</div>
 					</CardContent>
 					<CardFooter className="flex justify-end">

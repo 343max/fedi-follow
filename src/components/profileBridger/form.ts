@@ -2,20 +2,22 @@ import { extractMastodonHandle } from "@app/lib/convertUrl";
 import { mastodonAppIdentifiers } from "@app/lib/mastodonApps";
 import { z } from "zod";
 
-const HandlerSchema = z.discriminatedUnion("handler", [
-	z.object({ handler: z.literal("instance"), instance: z.string() }),
+const handlerSchema = z.discriminatedUnion("kind", [
+	z.object({ kind: z.literal("webbrowser"), instance: z.string() }),
 	z.object({
-		handler: z.literal("app"),
+		kind: z.literal("app"),
 		app: z.enum(mastodonAppIdentifiers),
 	}),
 ]);
 
-export const FormSchema = z
+export type HandlerSchema = z.infer<typeof handlerSchema>;
+
+export const formSchema = z
 	.object({
 		url: z.string().refine((s) => extractMastodonHandle(s) !== null, {
 			message: "Not a Bluesky or Threads profile URL",
 		}),
 	})
-	.extend({ handler: HandlerSchema });
+	.extend({ handler: handlerSchema });
 
-export type FormModel = z.infer<typeof FormSchema>;
+export type FormSchema = z.infer<typeof formSchema>;

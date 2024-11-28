@@ -1,26 +1,34 @@
 import { mastodonInstances } from "@app/lib/mastodonInstances";
-import React from "react";
-import { Card, CardContent } from "../ui/card";
+import type React from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 
-export const InstanceInput = () => {
-	const [instance, setInstance] = React.useState("");
-	const instanceList = React.useMemo(
+export const InstanceInput: React.FC<{
+	initialValue: string;
+	setValue: (value: string) => void;
+}> = ({ initialValue, setValue: setExternalValue }) => {
+	const [value, setValue] = useState(initialValue);
+
+	const instanceList = useMemo(
 		() =>
 			mastodonInstances
-				.filter((i) => i.startsWith(instance) && i !== instance)
+				.filter((i) => i.startsWith(value) && i !== value)
 				.slice(0, 10),
-		[instance],
+		[value],
 	);
+
+	useEffect(() => {
+		setExternalValue(value);
+	}, [value, setExternalValue]);
+
 	return (
 		<>
 			<Input
 				id="instance"
 				list="instance-list"
 				placeholder="mastodon.social"
-				value={instance}
-				onChange={(e) => setInstance(e.target.value)}
+				value={value}
+				onChange={(e) => setValue(e.target.value)}
 			/>
 			<datalist id="instance-list">
 				{instanceList.map((instance) => (
