@@ -8,7 +8,10 @@ export const mastodonApps: readonly {
 	{
 		id: "mastodon",
 		name: "Mastodon App",
-		getUrl: ({ user, instance }) => `mastodon://profile/@${user}@${instance}`,
+		getUrl: ({ user, instance }) =>
+			navigator.userAgent.toLowerCase().match(/android/) === null
+				? `mastodon://profile/@${user}@${instance}` // iOS
+				: `https://mastodon.online/@${user}@${instance}`, // Android
 	},
 	{
 		id: "elk",
