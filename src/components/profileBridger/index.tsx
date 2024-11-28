@@ -60,24 +60,11 @@ export const ProfileBridger = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={onSubmit}>
-				<Card className="max-w-[500px]">
-					<CardHeader>
-						<CardTitle>Follow on Mastodon</CardTitle>
-						<CardDescription>
-							Paste the Bluesky Profile link or the Threads profile you want to
-							follow
-						</CardDescription>
-					</CardHeader>
-					<CardContent>
-						<div className="grid w-full items-center gap-4">
-							<ProfileLinkInput form={form} />
-							<HandlerPicker form={form} />
-						</div>
-					</CardContent>
-					<CardFooter className="flex justify-end">
-						<Button>Visit Profile</Button>
-					</CardFooter>
-				</Card>
+				<div className="grid w-full items-center gap-4">
+					<ProfileLinkInput form={form} />
+					<HandlerPicker form={form} />
+				</div>
+				<Button>Visit Profile</Button>
 			</form>
 		</Form>
 	);
