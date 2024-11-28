@@ -16,9 +16,4 @@ export const mastodonApps: readonly {
 		getUrl: ({ user, instance }) =>
 			`mona://search?text=@${user}@${instance}&show=users`,
 	},
-	{
-		id: "icecubes",
-		name: "IceCubes",
-		getUrl: ({ user, instance }) => `icecubesapp://${instance}/@${user}`,
-	},
 ] as const;
