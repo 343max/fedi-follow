@@ -9,7 +9,9 @@ import {
 } from "@app/components/ui/card";
 import { useFragmentParams } from "@app/hooks/useFragmentParams";
 import { extractMastodonHandle } from "@app/lib/convertUrl";
+import { type HandlerSchema, handlerSchema } from "@app/lib/handlerSchema";
 import { mastodonApps } from "@app/lib/mastodonApps";
+import { useLocalStorage } from "@app/lib/useLocalStorage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -20,12 +22,16 @@ import { ProfileLinkInput } from "./profileLinkInput";
 
 export const ProfileBridger = () => {
 	const initialUrl = useFragmentParams().url;
+	const handlerSettings = useLocalStorage("handlerSettings", handlerSchema, {
+		kind: "webbrowser",
+		instance: "",
+	});
 
 	const form = useForm<FormSchema>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			url: initialUrl ?? "",
-			handler: { kind: "webbrowser", instance: "" },
+			handler: handlerSettings.value,
 		},
 	});
 
@@ -36,6 +42,8 @@ export const ProfileBridger = () => {
 	}, [initialUrl, form.setValue]);
 
 	const onSubmit = form.handleSubmit((data) => {
+		handlerSettings.saveValue(data.handler);
+
 		const handle = extractMastodonHandle(data.url);
 		if (!handle) {
 			throw new Error("How did we get here?");

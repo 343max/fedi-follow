@@ -1,15 +1,6 @@
 import { extractMastodonHandle } from "@app/lib/convertUrl";
+import { handlerSchema } from "@app/lib/handlerSchema";
 import { z } from "zod";
-
-const handlerSchema = z.discriminatedUnion("kind", [
-	z.object({ kind: z.literal("webbrowser"), instance: z.string() }),
-	z.object({
-		kind: z.literal("app"),
-		app: z.string(),
-	}),
-]);
-
-export type HandlerSchema = z.infer<typeof handlerSchema>;
 
 export const formSchema = z
 	.object({
