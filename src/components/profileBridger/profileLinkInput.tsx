@@ -1,5 +1,7 @@
 import { Input } from "@app/components/ui/input";
+import { Clipboard } from "lucide-react";
 import type { UseFormReturn } from "react-hook-form";
+import { Button } from "../ui/button";
 import {
 	FormControl,
 	FormField,
@@ -19,12 +21,25 @@ export const ProfileLinkInput: React.FC<{
 			render={({ field }) => (
 				<FormItem>
 					<FormLabel>Profile Link</FormLabel>
-					<FormControl>
-						<Input
-							placeholder="https://bsky.app/profile/343max.de"
-							{...field}
-						/>
-					</FormControl>
+					<div className="flex flex-row items-center gap-1">
+						<FormControl>
+							<Input
+								placeholder="https://bsky.app/profile/343max.de"
+								{...field}
+							/>
+						</FormControl>
+						<Button
+							variant="outline"
+							size="sm"
+							type="button"
+							onClick={async () => {
+								const clipboard = await navigator.clipboard.readText();
+								field.onChange(clipboard);
+							}}
+						>
+							<Clipboard />
+						</Button>
+					</div>
 					<FormMessage />
 				</FormItem>
 			)}
